@@ -84,13 +84,13 @@ def get_team_stats(team_url):
             (stats["orb"] / (stats["drb"] + stats["orb"])) * \
             (stats["fga"] - stats["fg"]) + stats["tov"]))
 
-    # calculate "advanced" stats
+    # calculate "advanced" stats - edited by Matt on 2/13/18
     logging.info("get_team_stats: calculating advanced stats")
     stats["ts%"] = stats["pts"] / (2 * (stats["fga"] + 0.44 * stats["fta"]))
     stats["efg%"] = (0.5 * stats["3p"] + stats["fg"]) / stats["fga"]
-    stats["to%"] = stats["to%"] / stats["poss"]
+    stats["to%"] = stats["tov"] / stats["poss"] #changed to% to tov
     # can"t get orb% because don"t have opponent defensive rebounds
-    stats["ftr"] = stats["fta"] / stats["fga"]
+    stats["ftr"] = stats["fta"] / stats["fga"] # Note for some reason this is producing 0, not sure why
     stats["ortg"] = stats["pts"] / stats["poss"]
     stats["drtg"] = stats["opp_pts"] / stats["poss"]
 
